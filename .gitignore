@@ -97,8 +97,16 @@ venv.bak/
 # Rope project settings
 .ropeproject
 
+*.pickle
+.vscode
+
 # mkdocs documentation
 /site
 
 # mypy
 .mypy_cache/
+
+# checkpoint
+*.h5
+*.pkl
+*.pth
