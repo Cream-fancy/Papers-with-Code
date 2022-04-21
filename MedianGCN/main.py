@@ -1,7 +1,7 @@
 import torch as th
 import torch.nn.functional as F
 from dgl.data import CoraGraphDataset, CiteseerGraphDataset
-from arguments import args_parser
+from args import args_parser
 # from models.median_dgl import MedianGCN
 # from models.gcn_dgl import GCN
 from models.modified_gcn import ModifiedGCN
