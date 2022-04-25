@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-from utils import glorot_init
+from inits import glorot_init
 
 
 class DropoutSparse(nn.Module):

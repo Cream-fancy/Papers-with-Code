@@ -1,3 +1,4 @@
+from re import A
 import torch
 import torch.nn.functional as F
 from torch.optim import Adam
@@ -6,10 +7,9 @@ import scipy.sparse as sp
 import numpy as np
 import time
 
-from input_data import load_data
-from preprocessing import *
+from utils import *
 from args import args_parser
-from model import VGAE, GAE
+from models import VGAE, GAE
 
 args = args_parser()
 
@@ -39,15 +39,9 @@ features_nonzero = features[1].shape[0]
 adj_label = adj_train + sp.eye(adj_train.shape[0])
 adj_label = sparse_to_tuple(adj_label)
 
-adj_label = torch.sparse.FloatTensor(torch.LongTensor(adj_label[0].T),
-                                     torch.FloatTensor(adj_label[1]),
-                                     torch.Size(adj_label[2]))
-adj_norm = torch.sparse.FloatTensor(torch.LongTensor(adj_norm[0].T),
-                                    torch.FloatTensor(adj_norm[1]),
-                                    torch.Size(adj_norm[2]))
-features = torch.sparse.FloatTensor(torch.LongTensor(features[0].T),
-                                    torch.FloatTensor(features[1]),
-                                    torch.Size(features[2]))
+adj_label = tuple_to_tensor(adj_label)
+adj_norm = tuple_to_tensor(adj_norm)
+features = tuple_to_tensor(features)
 
 # Create model and optimizer
 if args.model == 'vgae':
